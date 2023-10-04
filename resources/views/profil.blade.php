@@ -12,42 +12,69 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card mb-5">
-                    <form action="{{ route('profil.edit', auth()->user()->id) }}" method="POST"></form>
-                    <div class="card-body">
-                        <h4 class="card-title py-1 mb-4">Form Edit Profile</h4>
-                        <div class="mb-4 row">
-                            <label class="col-3 col-form-label required">Nama Lengkap</label>
-                            <div class="col">
-                                <input type="text" class="form-control" name='nama'
-                                    placeholder="Masukkan Nama Lengkap">
+                    <form action="{{ route('profil.update') }}" method="POST">
+                        @method('patch')
+                        @csrf
+                        <div class="card-body">
+                            <h4 class="card-title py-1 mb-4">Form Edit Profile</h4>
+                            <div class="mb-4 row">
+                                <label class="col-3 col-form-label required">Nama Lengkap</label>
+                                <div class="col">
+                                    <input type="text" class="form-control @error('nama') is-invalid @enderror"
+                                        name='nama' value="{{ old('nama', $data->nama) }}"
+                                        placeholder="Masukkan Nama Lengkap" value="">
+                                    @error('nama')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="mb-4 row">
+                                <label class="col-3 col-form-label required">Email</label>
+                                <div class="col">
+                                    <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                        name='email' value="{{ old('email', $data->email) }}"
+                                        placeholder="Masukkan Email">
+                                    @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="mb-4 row">
+                                <label class="col-3 col-form-label required">No Handphone</label>
+                                <div class="col">
+                                    <input type="text" class="form-control @error('no_hp') is-invalid @enderror"
+                                        name='no_hp' value="{{ old('no_hp', $data->no_hp) }}"
+                                        placeholder="Masukkan No Handphone">
+                                    @error('no_hp')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="mb-4 row">
+                                <label class="col-3 col-form-label required">No Rekening</label>
+                                <div class="col">
+                                    <input type="text" class="form-control @error('no_rekening') is-invalid @enderror"
+                                        name='no_rekening' value="{{ old('no_rekening', $data->no_rekening) }}"
+                                        placeholder="Masukkan No Rekening">
+                                    @error('no_rekening')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
-                        <div class="mb-4 row">
-                            <label class="col-3 col-form-label required">Email</label>
-                            <div class="col">
-                                <input type="email" class="form-control" name='email'
-                                    placeholder="Masukkan Email">
-                            </div>
+                        <div class="card-footer text-end">
+                            <a href="{{ route('dashboard.index') }}"><button type="button" class="btn btn-default">Cancel</button></a>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
-                        <div class="mb-4 row">
-                            <label class="col-3 col-form-label required">No Handphone</label>
-                            <div class="col">
-                                <input type="text" class="form-control" name='no_hp'
-                                    placeholder="Masukkan No Handphone">
-                            </div>
-                        </div>
-                        <div class="mb-4 row">
-                            <label class="col-3 col-form-label required">No Rekening</label>
-                            <div class="col">
-                                <input type="text" class="form-control" name='no_rekening'
-                                    placeholder="Masukkan No Rekening">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer text-end">
-                        <button type="button" class="btn btn-default">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

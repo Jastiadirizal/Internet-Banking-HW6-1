@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\DashboardController;
 
 /*
@@ -30,4 +31,7 @@ Route::group([
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('/profil', [ProfilController::class, 'index'])->name('profil.index');
+    Route::get('/profil', [ProfilController::class, 'edit'])->name('profil.edit');
+    Route::patch('/profil', [ProfilController::class, 'update'])->name('profil.update');
 });
