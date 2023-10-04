@@ -17,3 +17,14 @@ use App\Http\Controllers\LoginController;
 Route::get('/', [LoginController::class, 'index'])->middleware('guest');
 Route::get('/index', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/index', [LoginController::class, 'authenticate'])->name('login.index');
+
+Route::get('/register', [LoginController::class, 'register'])->name('register')->middleware('guest');
+Route::post('/register', [LoginController::class, 'registerPost'])->name('register')->middleware('guest');
+
+
+Route::group([
+    'middleware' => 'auth',
+], function () {
+
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+});
